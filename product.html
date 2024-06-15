@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>ورودی محصول</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -169,9 +169,69 @@
             </nav>
 
             <!-- Main content -->
-            <main role="main" class="col-md-10 ml-sm-auto col-lg-10 px-4">
+            <main class="col-md-10 main-content">
+                 <!--import card-->
+               <div class="row mt-0" style="font-size:small; font-family: 'B Nazanin'">
+                  <div class="col-5 mt-2">
+                      <div class="card mb-0">
+                           <div class="card-header">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p class="font-weight-bold float-left">ورود اطلاعات محصول: </p>
+                                </div>
+                                <div class="col-6">
+                                    <input type="file" class="form-control-file" id="productFile" accept=".csv, .xlsx">
+                                </div>
+                                <div class="col-2">
+                                    <button class="btn btn-import btn-outline-secondary btn-outline-primary">دریافت </button>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
 
+                <!--The list of products-->
+                <div class="row mt-2">
+                    <div class="col-md-4">
+                        <div class="card">
+                          <div class="card-header bg-primary text-white">
+                            <h5 class="float-right">جستجوی تکنیکال</h5>
+                          </div>
+                          <div class="card-body">
+                            <input type="text" id="search" class="form-control search-bar" placeholder="Search for products...">
+                            <div class="list-group product-list" id="productList">
+                              <!-- Product List Items will be dynamically added here -->
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                     <div class="col-md-8">
+                        <div class="card">
+                         <div class="card-header bg-danger text-white">
+                                <h4 class="float-right">محصولات مربوط به تکنیکال</h4>
+                         </div>
+                         <div class="card-body">
+                                    <table class="table table-bordered table-responsive-sm">
+                                      <thead>
+                                        <tr>
+                                          <th>کد محصول</th>
+                                          <th>نام تکنیکال</th>
+                                          <th>نام محصول(بسته بندی)</th>
+                                          <th>متریک </th>
+                                          <th>معیار</th>
+                                            <th>موجودی</th>
 
+                                        </tr>
+                                      </thead>
+                                      <tbody id="salesDataBody" >
+                                        <!-- Sales data rows will be dynamically added here -->
+                                      </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                     </div>
+                </div>
             </main>
         </div>
     </div>
@@ -180,44 +240,54 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    <script src="script/salesReport.js"></script>
     <script>
         $(document).ready(function() {
-            var ctx1 = document.getElementById('invoicesChart').getContext('2d');
-            var invoicesChart = new Chart(ctx1, {
-                type: 'line',
-                data: {
-                    labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-                    datasets: [{
-                        label: 'This week',
-                        data: [20, 40, 50, 75, 65, 90, 80],
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        fill: false
-                    }, {
-                        label: 'Last week',
-                        data: [30, 45, 65, 60, 80, 100, 85],
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        fill: false
-                    }]
-                }
-            });
+        populateProductList();
 
-            var ctx2 = document.getElementById('salesForecastChart').getContext('2d');
-            var salesForecastChart = new Chart(ctx2, {
-                type: 'bar',
-                data: {
-                    labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-                    datasets: [{
-                        label: 'Weighted',
-                        data: [50, 60, 70, 80, 90, 100, 110],
-                        backgroundColor: 'rgba(153, 102, 255, 0.6)'
-                    }, {
-                        label: 'Won',
-                        data: [40, 50, 60, 70, 80, 90, 100],
-                        backgroundColor: 'rgba(54, 162, 235, 0.6)'
-                    }]
-                }
-            });
+
+      $("#productList").on("click", "a", function(e) {
+        e.preventDefault();
+       populateSalesDataTable2($(this).text());
+      });
+
+      $("#search").on("keyup", function() {
+        let value = $(this).val().toLowerCase();
+        $("#productList a").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
         });
-    </script>
+      });
+
+
+      $('#import-form').on('submit', function(e) {
+        e.preventDefault();
+        const fileInput = $('#productFile')[0];
+
+        const file = fileInput.files[0];
+        const formData = new FormData();
+        formData.append('productFile', file);
+
+        // Dummy AJAX request for example purposes
+        $.ajax({
+          url: '/import-product-data', // Replace with your server endpoint
+          type: 'POST',
+          data: formData,
+          contentType: false,
+          processData: false,
+          success: function(response) {
+            showAlert('File imported successfully!', 'success');
+          },
+          error: function() {
+            showAlert('Error importing file.', 'danger');
+          }
+        });
+      });
+
+      function showAlert(message, type) {
+        const alert = $('#alert');
+        alert.removeClass('alert-success alert-danger').addClass('alert-' + type).text(message).show();
+      }
+    });
+  </script>
 </body>
 </html>
