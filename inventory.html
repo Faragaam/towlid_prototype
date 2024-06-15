@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fa" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'B Nazanin', sans-serif;
+            background: linear-gradient(135deg, #ececec, #f9f9f9);
+            color: #333;
+            direction: rtl;
+        }
+        .sidebar {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            padding-top: 20px;
+            font-size: large;
+
+        }
+        .sidebar a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #333;
+            border-radius: 5px;
+        }
+        .sidebar a:hover, .sidebar a.active {
+            background-color: #e9ecef;
+            color: #007bff;
+        }
+        .topbar {
+            background-color: #fff;
+            border-bottom: 1px solid #dee2e6;
+            padding: 10px 20px;
+            font-size: large;
+        }
+        .main-content {
+            padding: 20px;
+        }
+        .card-header, .card-body {
+            border-radius: 10px;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+        .nav-item .nav-link.active {
+            background-color: #007bff;
+            color: #fff !important;
+        }
+        .small-box {
+            border-radius: 10px;
+            text-align: center;
+            padding: 20px;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        .small-box .icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        .small-box.bg-info {
+            background-color: #17a2b8 !important;
+        }
+        .small-box.bg-success {
+            background-color: #28a745 !important;
+        }
+        .small-box.bg-warning {
+            background-color: #ffc107 !important;
+        }
+        .small-box.bg-danger {
+            background-color: #dc3545 !important;
+        }
+        .card-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .sales-diagram {
+            width: 50px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <header class="col-12 bg-info text-white p-3 topbar d-flex justify-content-between align-items-center">
+                <div>
+                    <img src="./image/logo-small-fe38e37f.png" alt="User" class="rounded-circle ml-2" style="width: 80px;">
+                    <span>سیستم مدیریت فرایند فروش و تولید کارخانه آریاشیمی</span>
+                </div>
+                <div class="d-flex align-items-end">
+                    <img src="./image/logo-7d58f2b2.png">
+                </div>
+            </header>
+        </div>
+        </br>
+        <div class="row"  >
+            <div class="topbar col-12 d-flex justify-content-between align-items-center" dir="ltr">
+                    <div class="d-flex align-items-md-start" >
+                        <a class="col-md-3" href="product.html">
+                           <img src="image/bim2-d1a9fe9a.png" class="rounded-circle ml-1" >
+                            <span>محصول</span>
+                        </a>
+                        <a class="col-md-4 " href="raw_material.html">
+                           <img src="image/anasor.png" class="rounded-circle ml-2" >
+                            <span>مواد اولیه</span>
+                        </a>
+                        <a class="col-md-4" href="inventory.html">
+                           <img src="image/inventory.png" class="rounded-circle ml-2" >
+                            <span class="font-weight-bold ">انبار</span>
+                        </a>
+                        <a class="col-md-4 " href="sell.html">
+                           <img src="image/sailes.png" class="rounded-circle ml-2 " >
+                            <span >فروش</span>
+                        </a>
+                        <a class="col-md-4" href="product.html">
+                           <img src="image/amalkard.png" class="rounded-circle ml-2" >
+                            <span>تولید</span>
+                        </a>
+                        <a class="col-md-4" href="deficit.html">
+                           <img src="image/maghalat.png" class="rounded-circle ml-2" >
+                            <span >کسری</span>
+                        </a>
+                    </div>
+         </div>
+        </div>
+        </br>
+        <div class="row">
+            <!-- first header-->
+
+
+            <!-- Sidebar -->
+            <nav class="col-md-2 d-none d-md-block sidebar">
+                <div class="sidebar-sticky">
+                    <div class="text-center">
+                        <img src="./image/avatar.png" alt="User" class="rounded-circle mb-2" style="width: 60px;">
+                        <h5>مهندس جهانتیغ</h5>
+                        </br>
+                    </div>
+                    <ul class="nav flex-column" dir="rtl">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./sell.html">داشبورد</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./salesInput.html">ثبت انبار </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="salesReport.html">ورود/خروج انبار</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./salesPredict.html">کنترل موجودی انبار</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./salesPlan.html">گزارش </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./login.html">خروج</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main content -->
+            <main role="main" class="col-md-10 ml-sm-auto col-lg-10 px-4">
+
+
+            </main>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var ctx1 = document.getElementById('invoicesChart').getContext('2d');
+            var invoicesChart = new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                    datasets: [{
+                        label: 'This week',
+                        data: [20, 40, 50, 75, 65, 90, 80],
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        fill: false
+                    }, {
+                        label: 'Last week',
+                        data: [30, 45, 65, 60, 80, 100, 85],
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        fill: false
+                    }]
+                }
+            });
+
+            var ctx2 = document.getElementById('salesForecastChart').getContext('2d');
+            var salesForecastChart = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                    datasets: [{
+                        label: 'Weighted',
+                        data: [50, 60, 70, 80, 90, 100, 110],
+                        backgroundColor: 'rgba(153, 102, 255, 0.6)'
+                    }, {
+                        label: 'Won',
+                        data: [40, 50, 60, 70, 80, 90, 100],
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)'
+                    }]
+                }
+            });
+        });
+    </script>
+</body>
+</html>
