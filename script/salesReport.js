@@ -337,4 +337,23 @@ function handleProductSelection(product) {
         salesDataBody.append(row);
       });
     }
+    function populateSalesDataTable2(product) {
+      let salesDataBody = $("#salesDataBody");
+      salesDataBody.empty();
+      let productPackages = packaging[product] || ["Package 1", "Package 2"];
+      productPackages.forEach(pkg => {
+        let row = `
+          <tr>
+            <td>201109</td>
+            <td>${product}</td>
+            <td>${pkg}</td>
+            <td>وزن</td>
+            <td>کیلوگرم</td>
+            <td>۱۰۰</td>
+
+          </tr>
+        `;
+        salesDataBody.append(row);
+      });
+    }
 
