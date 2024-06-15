@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>پیش بینی فروش</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -145,7 +145,7 @@
 
         </br>
        <!-- Main Content Row-->
-        <div class="row">
+        <div class="row mt-sm-0">
           <!-- Sidebar -->
             <nav class="col-md-2 d-none d-md-block sidebar">
                 <div class="sidebar-sticky">
@@ -177,8 +177,31 @@
                 </div>
             </nav>
 
-            <!-- Main content -->
+           <!-- Main content -->
             <main class="col-md-10 main-content">
+
+                 <!--Add a new Row for predict model selection-->
+            <div class="row mt-0" style="font-size:small; font-family: 'B Nazanin'">
+                  <div class="col-4 mt-2">
+                      <div class="card mb-0">
+                           <div class="card-header">
+                            <div class="row">
+                                <div class="col-5">
+                                    <p class="font-weight-bold float-left">انتخاب مدل پیش بینی</p>
+                                </div>
+                                <div class="col-7">
+                                    <select class="form-control">
+                                        <option value="month">پیش بینی ساده </option>
+                                        <option value="year">رگرسیون خطی</option>
+                                        <option value="season">یادگیری عمیق LSTM</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+
                 <!-- THE Up Row Contain -->
               <div class="row mt-sm-0">
                     <!-- The List of Technical and sails in year-->
