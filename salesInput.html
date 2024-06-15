@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>ثبت فروش</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -444,22 +444,20 @@
                     <div class="col-md-5">
                         <div class="card mb-4">
                             <div class="card-header">
-                                <div class="dropdown col-md-1 dropleft float-right ">
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                        فروش ماهیانه
-                                    </button>
-                                    <div class="dropdown-menu">
-                                      <a class="dropdown-item active" href="#">ماهیانه</a>
-                                      <a class="dropdown-item " href="#">فصلی</a>
-                                      <a class="dropdown-item " href="#">سال</a>
-                                    </div>
-                            </div>
+                                <div class="col-4">
+                                    <select class="form-control">
+                                        <option value="year">ماهیانه</option>
+                                        <option value="season">فصلی</option>
+                                        <option value="month">سالیانه</option>
+                                    </select>
+                                </div>
+                             </div>
+
                             <div class="card-body">
                                 <canvas id="revenueChart"></canvas>
                             </div>
                         </div>
                     </div>
-                </div>
                 </div>
 
                 <!--Second Row of Main Contain -->
