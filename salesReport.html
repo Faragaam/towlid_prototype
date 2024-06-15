@@ -1,359 +1,485 @@
-// Mock data for products
-const poison = {
-      "حشره کش پودری": [
-        {name: "تریسیکلازول 75% WP", sales: [4791, 7643, 6512, 10996, 13532, 3504, 7435]},
-        {name: "استامی‌پرید 20% SP", sales: [23177, 36542, 38865, 39269, 26606, 27957, 1960]},
-        {name: "استامی‌پرید ویژه 20% SP", sales: [38730, 39136, 13313, 234, 736, 21777, 19520]},
-        {name: "اتوکسازول 10% SC", sales: [8173, 9850, 10000, 0, 0, 10000, 10000]},
-        {name: "اتیون 47%EC", sales: [42184, 38917, 40833, 34717, 34222, 33334, 29864]},
-        {name: "اسپیرودیکلوفن 24% SC", sales: [27702, 33036, 27417, 16619, 23010, 24342, 24342]},
-        {name: "استوکلر 50% EC", sales: [17902, 16000, 6540, 4440, 15000, 15000, 15000]},
-        {name: "اکسی کلرور مس 35% WP", sales: [52541, 45611, 54995, 54110, 77724, 55887, 46793]},
-        {name: "اکسی فلورفن 24% EC", sales: [20057, 13744, 11424, 13745, 20286, 12301, 12786]},
-        {name: "اگزادیازون 12% EC", sales: [11514, 8575, 12141, 11460, 11404, 8124, 10299]},
-        {name: "امامکتین بنزوات+لوفنورون 50% WG", sales: [312, 4000, 4000, 4000, 0, 0, 0]},
-        {name: "تریسیکلازول 75% WP", sales: [4791, 7643, 6512, 10996, 13532, 3504, 7435]}
-      ],
-      "گرانول": [
-        // Add data for this category
-      ],
-      "علف کش پودری": [
-        // Add data for this category
-      ],
-      "علف کش مایع": [
-        // Add data for this category
-      ],
-      "توفوردی": [
-        // Add data for this category
-      ],
-      "روغن پارافین": [
-        // Add data for this category
-      ]
-    };
-
-// Mock data for packaging
-const fertilizers = [
-      {name: "اورانوس", sales: [1797, 1014, 1435, 2563, 1818, 3091, 3312]},
-      {name: "اوره فسفات", sales: [109430, 108450, 10025, 145000, 0, 0, 0]},
-      {name: "ایمپکت", sales: [186785, 179210, 116705, 137388, 84921, 0, 0]},
-      {name: "آرامیکس", sales: [320287, 270014, 199247, 137388, 84921, 72054, 69880]},
-      {name: "آرمیتکس", sales: [468335, 370600, 2881092, 1024]},
-      {name: "آلگورا", sales: [54983, 51297, 41478, 44470, 49153, 28765, 36244]},
-      {name: "بفرمال روی", sales: [33296, 19003, 5892, 8015, 9805, 6408, 9348]},
-      {name: "بوستانو", sales: [1251507, 1211119, 1254908, 1056845, 586550, 208556, 133046]},
-      {name: "پتاسیل", sales: [35067, 22087, 25000, 0, 0, 0, 0]},
-      {name: "تاباک ۱۰-۵۰-۱۰", sales: [6426, 4292, 4634, 5200, 3942, 1970, 4038]}
-    ];
-
-// Mock data for packaging
-const packaging = {
-      "تریسیکلازول 75% WP": ["پاکت آلومینیومی یک کیلوگرمی(10کیلوگرم در کارتن)", "پاکت آلومینیومی یک کیلوگرمی(8کیلوگرم در کارتن)", "پاکت آلومینیومی نیم کیلوگرمی(10کیلوگرم در کارتن)", "پاکت آلومینیومی نیم کیلوگرمی(8کیلوگرم در کارتن)", "پاکت آلومینیومی 250 گرمی", "ساشه 100 گرمی"],
-      "فیپرونیل 0.2% G": ["پاکت آلومینیومی یک کیلوگرمی(10کیلوگرم در کارتن)", "پاکت آلومینیومی نیم کیلوگرمی(۱۰ کیلوگرم در کارتن)", "پاکت آلومینیومی نیم کیلوگرمی(۸ کیلوگرم در کارتن)", "ساشه 100 چاپدار"],
-      "تریکلروفن 80% WP": ["پاکت آلومینیومی یک کیلوگرمی(10کیلوگرم در کارتن)", "پاکت آلومینیومی یک کیلوگرمی(8کیلوگرم در کارتن)", "پاکت آلومینیومی نیم کیلوگرمی(10کیلوگرم در کارتن)", "پاکت آلومینیومی نیم کیلوگرمی(8کیلوگرم در کارتن)", "پاکت آلومینیومی 250 گرمی", "ساشه 100 گرمی"],
-      "استامی‌پرید 20% SP": ["پاکت آلومینیومی 250 گرمی (6 کیلوگرمی در کارتن)"],
-      "استامی‌پرید ویژه 20% SP": ["پاکت آلومینیومی 250 گرمی چاپدار"],
-      "اتوکسازول 10% SC": ["بطری پارس پینوا نیم لیتری","بطری پلی اتیلن نیم لیتری"],
-      "اتیون 47%EC": ["Package 1", "Package 2"],
-      "اسپیرودیکلوفن 24% SC": ["بطری پارس پینوا نیم لیتری", "بطری پلی اتیلن نیم لیتری","بطری پارس پینوا 250 سی سی بدون قوطی مقوایی", "بطری 60 سی سی سموم SC"],
-      "استوکلر 50% EC": ["سطل 20 لیتری", "بطری پارس پینوا یک لیتری سفید"],
-      "اکسی کلرور مس 35% WP": ["پاکت آلومینیومی یک کیلوگرمی چاپدار(12کیلوگرم در کارتن)", "پاکت آلومینیومی نیم کیلوگرمی چاپدار(10کیلوگرم در کارتن)", "ساشه 100 گرمی"],
-      "اکسی فلورفن 24% EC": ["بطری کوئکس یک لیتری", "بطری کوئکس نیم کیلوگرمی"],
-      "اگزادیازون 12% EC": ["Package 1", "Package 2"],
-      "امامکتین بنزوات+لوفنورون 50% WG": ["Package 1", "Package 2", "بطری پارس پینوا نیم لیتری"],
-      "اورانوس": ["Package 1", "Package 2"],
-      "اوره فسفات": ["Package 1", "Package 2"],
-      "ایمپکت": ["Package 1", "Package 2"],
-      "آرامیکس": ["Package 1", "Package 2"],
-      "آرمیتکس": ["Package 1", "Package 2"],
-      "آلگورا": ["Package 1", "Package 2"],
-      "بفرمال روی": ["Package 1", "Package 2"],
-      "بوستانو": ["Package 1", "Package 2"],
-      "پتاسیل": ["Package 1", "Package 2"],
-      "تاباک ۱۰-۵۰-۱۰": ["Package 1", "Package 2"]
-    };
-
-// Generating Random Data for Charts
-function generateData() {
-      return Array.from({ length: 12 }, () => Math.floor(Math.random() * 100));
-    }
-
-function generateRandomSalesData(count) {
-      let data = [];
-      for (let i = 0; i < count; i++) {
-        data.push(Math.floor(Math.random() * 1000));
-      }
-      return data;
-    }
-
-    // Main Chart
-const ctxMain = document.getElementById('mainChart').getContext('2d');
-const mainChart = new Chart(ctxMain, {
-      type: 'line',
-      data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-        datasets: [{
-          label: 'Main Data',
-          data: generateData(),
-          backgroundColor: 'rgba(0, 123, 255, 0.2)',
-          borderColor: 'rgba(0, 123, 255, 1)',
-          borderWidth: 1
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true
-          }
+<!DOCTYPE html>
+<html lang="fa" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'B Nazanin', sans-serif;
+            background: linear-gradient(135deg, #ececec, #f9f9f9);
+            color: #333;
+            direction: rtl;
         }
-      }
-    });
+        .sidebar {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            padding-top: 20px;
+            font-size: large;
 
-    // Secondary Chart
-const ctxSecondary = document.getElementById('secondaryChart').getContext('2d');
-const secondaryChart = new Chart(ctxSecondary, {
-      type: 'bar',
-      data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-        datasets: [{
-          label: 'Secondary Data',
-          data: generateData(),
-          backgroundColor: 'rgba(40, 167, 69, 0.2)',
-          borderColor: 'rgba(40, 167, 69, 1)',
-          borderWidth: 1
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true
-          }
         }
-      }
-    });
-
-        // Revenue Chart
-var ctx = document.getElementById('revenueChart').getContext('2d');
-var revenueChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
-      datasets: [{
-        label: 'Vente commercial',
-        data: [100000, 150000, 200000, 180000, 220000, 250000, 270000, 300000],
-        backgroundColor: 'rgba(0, 123, 255, 0.2)',
-        borderColor: 'rgba(0, 123, 255, 1)',
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
+        .sidebar a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #333;
+            border-radius: 5px;
         }
-      }
-    }
-  });
-
-    // Invoices Chart
-var ctx2 = document.getElementById('invoicesChart').getContext('2d');
-var invoicesChart = new Chart(ctx2, {
-    type: 'bar',
-    data: {
-      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
-      datasets: [{
-        label: 'Ouvertes',
-        data: [3, 2, 1, 3, 2, 4, 3, 2],
-        backgroundColor: 'rgba(255, 193, 7, 0.5)',
-        borderColor: 'rgba(255, 193, 7, 1)',
-        borderWidth: 1
-      }, {
-        label: 'Reçues',
-        data: [2, 3, 4, 3, 3, 2, 3, 4],
-        backgroundColor: 'rgba(40, 167, 69, 0.5)',
-        borderColor: 'rgba(40, 167, 69, 1)',
-        borderWidth: 1
-      }, {
-        label: 'Payées',
-        data: [3, 2, 3, 4, 2, 4, 3, 2],
-        backgroundColor: 'rgba(0, 123, 255, 0.5)',
-        borderColor: 'rgba(0, 123, 255, 1)',
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
+        .sidebar a:hover, .sidebar a.active {
+            background-color: #e9ecef;
+            color: #007bff;
         }
-      }
-    }
-  });
+        .topbar {
+            background-color: #fff;
+            border-bottom: 1px solid #dee2e6;
+            padding: 10px 20px;
+            font-size: large;
+        }
+        .main-content {
+            padding: 20px;
+        }
+        .card-header, .card-body {
+            border-radius: 10px;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+        .nav-item .nav-link.active {
+            background-color: #007bff;
+            color: #fff !important;
+        }
+        .small-box {
+            border-radius: 10px;
+            text-align: center;
+            padding: 20px;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        .small-box .icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        .small-box.bg-info {
+            background-color: #17a2b8 !important;
+        }
+        .small-box.bg-success {
+            background-color: #28a745 !important;
+        }
+        .small-box.bg-warning {
+            background-color: #ffc107 !important;
+        }
+        .small-box.bg-danger {
+            background-color: #dc3545 !important;
+        }
+        .card-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .sales-diagram {
+            width: 50px;
+        }
+        .card-icon {
+            font-size: 2rem;
+            color: #fff;
+            }
+        .bg-primary { background-color: #007bff !important; }
+        .bg-success { background-color: #28a745 !important; }
+        .bg-warning { background-color: #ffc107 !important; }
+        .bg-info { background-color: #17a2b8 !important; }
+        .bg-danger { background-color: #dc3545 !important; }
+        .search-bar {
+          margin-bottom: 20px;
+        }
+        .product-list {
+          max-height: 400px;
+          overflow-y: auto;
+        }
+        .general-report .card-body {
+          padding: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- first header-->
+        <div class="row">
+            <header class="col-12 bg-info text-white p-3 topbar d-flex justify-content-between align-items-center">
+                <div>
+                    <img src="./image/logo-small-fe38e37f.png" alt="User" class="rounded-circle ml-2" style="width: 80px;">
+                    <span>سیستم مدیریت فرایند فروش و تولید کارخانه آریاشیمی</span>
+                </div>
+                <div class="d-flex align-items-end">
+                    <img src="./image/logo-7d58f2b2.png">
+                </div>
+            </header>
+        </div>
+        </br>
+        <!-- second header-->
+        <div class="row"  >
+            <div class="topbar col-12 d-flex justify-content-between align-items-center" dir="ltr">
+                    <div class="d-flex align-items-md-start" >
+                        <a class="col-md-3" href="product.html">
+                           <img src="image/bim2-d1a9fe9a.png" class="rounded-circle ml-1" >
+                            <span>محصول</span>
+                        </a>
+                        <a class="col-md-4 " href="raw_material.html">
+                           <img src="image/anasor.png" class="rounded-circle ml-2" >
+                            <span>مواد اولیه</span>
+                        </a>
+                        <a class="col-md-4" href="inventory.html">
+                           <img src="image/inventory.png" class="rounded-circle ml-2" >
+                            <span class="font-weight-bold ">انبار</span>
+                        </a>
+                        <a class="col-md-4 " href="sell.html">
+                           <img src="image/sailes.png" class="rounded-circle ml-2 " >
+                            <span class="font-weight-bold ">فروش</span>
+                        </a>
+                        <a class="col-md-4" href="product.html">
+                           <img src="image/amalkard.png" class="rounded-circle ml-2" >
+                            <span>تولید</span>
+                        </a>
+                        <a class="col-md-4" href="deficit.html">
+                           <img src="image/maghalat.png" class="rounded-circle ml-2" >
+                            <span >کسری</span>
+                        </a>
+                    </div>
+         </div>
+        </div>
+        </br>
 
 
-    //Product List
-function populateProductList() {
-  let productList = $("#productList");
-  productList.empty();
-  Object.keys(poison).forEach(productClass => {
-        poison[productClass].forEach(product => {
-          productList.append(`<a href="#" class="list-group-item list-group-item-action">${product.name}</a>`);
+        <!-- row content-->
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-2 d-none d-md-block sidebar">
+                <div class="sidebar-sticky">
+                    <div class="text-center">
+                        <img src="./image/avatar.png" alt="User" class="rounded-circle mb-2" style="width: 60px;">
+                        <h5>مهندس جهانتیغ</h5>
+                        </br>
+                    </div>
+                    <ul class="nav flex-column" dir="rtl">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./login.html">داشبورد</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./salesInput.html">ثبت اطلاعات فروش</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  active" href="./salesReport.html">گزارش فروش</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./salesPredict.html">پیش بینی فروش</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./salesPlan.html">برنامه فروش</a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link" href="./login.html">خروج</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+         <!-- Main content First Row-->
+            <main role="main" class="col-10 ml-sm-auto px-4">
+
+                <!-- Product List and search -->
+                <div class="row mt-0">
+                    <div class="col-md-8">
+                            <div class="card mb-4">
+                                  <div class="card-header bg-success text-white">
+                                    <h5>فروش کل سالیانه</h5>
+                                  </div>
+                                  <div class="card-body">
+                                    <canvas id="yearlySalesBarChart"></canvas>
+                                  </div>
+                            </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                          <div class="card-header bg-primary text-white">
+                            <h5>جستجوی تکنیکال</h5>
+                          </div>
+                          <div class="card-body">
+                            <input type="text" id="search" class="form-control search-bar" placeholder="Search for products...">
+                            <div class="list-group product-list" id="productList">
+                              <!-- Product List Items will be dynamically added here -->
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Sales Data Table -->
+                 <div class="row mt-1">
+                     <div class="card">
+                         <div class="card-header bg-danger text-white">
+                                <div class="col-4">
+                                    <select class="form-control">
+                                        <option value="year">ماهیانه</option>
+                                        <option value="season">فصلی</option>
+                                        <option value="month">سالیانه</option>
+                                    </select>
+                                </div>
+                         </div>
+                         <div class="card-body">
+                                    <table class="table table-bordered table-responsive-sm">
+                                      <thead>
+                                        <tr>
+                                          <th>نام تکنیکال</th>
+                                          <th>بسته</th>
+                                          <th>فروش ماه</th>
+                                          <th>فروش سال</th>
+                                          <th>پرفروش ترین ماه</th>
+                                          <th>پرفروش ترین سال</th>
+                                          <th>پیش بینی فروش ماه</th>
+                                          <th>پیش بینی فروش سال</th>
+                                          <th>موجودی</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody id="salesDataBody" >
+                                        <!-- Sales data rows will be dynamically added here -->
+                                      </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                 </div>
+
+                <!-- Sales Report Charts for Selected Product -->
+                <div class="row mt-4">
+                  <div class="col-md-6">
+                    <div class="card mb-4">
+                      <div class="card-header bg-warning text-white">
+                        <h4>فروش سالیانه</h4>
+                      </div>
+                      <div class="card-body">
+                        <canvas id="productYearlySalesChart"></canvas>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="card mb-4">
+                      <div class="card-header bg-info text-white">
+                        <h4>فروش ماهیانه</h4>
+                      </div>
+                      <div class="card-body">
+                        <canvas id="productMonthlySalesChart"></canvas>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- small box for general info first row -->
+                <div class="row mt-4 general-report">
+                    <div class="col-md-3">
+                        <div class="card bg-primary text-white">
+                          <div class="card-body">
+                            <h5 class="card-title">پرفروش ترین محصول</h5>
+                            <p class="card-text" id="bestsellingProductCard">-</p>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-success text-white">
+                          <div class="card-body">
+                            <h5 class="card-title"></h5>
+                            <p class="card-text" id="bestsellingYear">-</p>
+                          </div>
+                        </div>
+                      </div>
+                    <div class="col-md-3">
+                        <div class="card bg-info text-white">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Sales</h5>
+                                <p class="card-text" id="totalSales">-</p>
+                            </div>
+                        </div>
+                    </div>
+      <div class="col-md-3">
+        <div class="card bg-danger text-white">
+          <div class="card-body">
+            <h5 class="card-title">Average Sales</h5>
+            <p class="card-text" id="averageSales">-</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+                <!-- small box for general info second row -->
+                <div class="row">
+                <!-- Top Cards -->
+                  <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="card text-white bg-primary">
+                      <div class="card-body">
+                        <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                        <h5 class="card-title">Card Title 1</h5>
+                        <p class="card-text">Some quick example text to build on the card title.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="card text-white bg-success">
+                      <div class="card-body">
+                        <div class="card-icon"><i class="fas fa-dollar-sign"></i></div>
+                        <h5 class="card-title">Card Title 2</h5>
+                        <p class="card-text">Some quick example text to build on the card title.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="card text-white bg-warning">
+                      <div class="card-body">
+                        <div class="card-icon"><i class="fas fa-users"></i></div>
+                        <h5 class="card-title">Card Title 3</h5>
+                        <p class="card-text">Some quick example text to build on the card title.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-3 col-md-6 col-sm-12 mb-44">
+                <div class="card text-white bg-danger">
+                <div class="card-body">
+                    <div class="card-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                        <h5 class="card-title">Card Title 4</h5>
+                        <p class="card-text">Some quick example text to build on the card title.</p>
+                </div>
+                </div>
+            </div>
+                </div>
+
+                <!-- Main Content Second Row-->
+                <div class="row mt-0">
+                    <!--First Diagram-->
+                    <div class="col-lg-8 mb-4">
+                        <div class="card">
+                            <div class="card-header">
+                                Main Item
+                            </div>
+                            <div class="card-body">
+                                <canvas id="mainChart"></canvas>
+                            </div>
+                    </div>
+                </div>
+                    <!--second Diagram-->
+                    <div class="col-lg-4 mb-4">
+                        <div class="card">
+                            <div class="card-header">
+                                Secondary Item
+                            </div>
+                            <div class="card-body">
+                                <canvas id="secondaryChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Main Content Third Row-->
+                <div class="row mt-0">
+                    <div class="col-md-6 mt-0">
+                      <div class="card mb-4">
+                        <div class="card-header">فروش ماهیانه</div>
+                        <div class="card-body">
+                          <canvas id="revenueChart"></canvas>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="card mb-4">
+                        <div class="card-body">
+                          <h5 class="card-title">Chiffre d'affaires</h5>
+                          <p class="card-text">275 328 €</p>
+                          <p class="card-text">/ 500k €</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">Trésorerie du mois</h5>
+              <p class="card-text">5 350 € <span class="text-success">+2.5%</span></p>
+            </div>
+          </div>
+        </div>
+                </div>
+
+                <!-- Main Content Third Row-->
+                <div class="row mt-0">
+                    <div class="card mb-4">
+                        <div class="card-header">Mes actions</div>
+                         <div class="card-body">
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Conception du cahier des charges
+              <span class="badge badge-primary badge-pill">Développement</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Réunion sur le projet A5002
+              <span class="badge badge-success badge-pill">Relance commerciale</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Relance du client A52
+              <span class="badge badge-success badge-pill">Relance commerciale</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Relance du client A63
+              <span class="badge badge-success badge-pill">Relance commerciale</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Relance du client A245
+              <span class="badge badge-warning badge-pill">Réunion</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Relance du client A365
+              <span class="badge badge-warning badge-pill">Réunion</span>
+            </li>
+          </ul>
+        </div>
+                    </div>
+
+                     <div class="card mb-4">
+                        <div class="card-header">Factures envoyées</div>
+                        <div class="card-body">
+                            <canvas id="invoicesChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </main>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    <script src="script/salesReport.js"></script>
+    <script>
+        $(document).ready(function() {
+      populateProductList();
+      initCharts();
+
+      $("#productList").on("click", "a", function(e) {
+        e.preventDefault();
+        handleProductSelection($(this).text());
+      });
+
+      $("#search").on("keyup", function() {
+        let value = $(this).val().toLowerCase();
+        $("#productList a").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
         });
       });
-}
 
-let yearlySalesBarChart, monthlySalesChart;
-
-function initCharts() {
-      // Yearly Sales Bar Chart for poison and fertilizer
-      let yearlySalesBarCtx = document.getElementById('yearlySalesBarChart').getContext('2d');
-      yearlySalesBarChart = new Chart(yearlySalesBarCtx, {
-        type: 'bar',
-        data: {
-          labels: ["1396", "1397", "1398", "1399", "1400", "1401", "1402", "1403"],
-          datasets: [
-            {
-              label: 'فروش سم',
-              data: generateRandomSalesData(7).concat([Math.floor(Math.random() * 1000)]),
-              backgroundColor: 'rgba(255, 99, 132, 0.2)',
-              borderColor: 'rgba(255, 99, 132, 1)',
-              borderWidth: 1
-            },
-            {
-              label: 'فروش کود',
-              data: generateRandomSalesData(7).concat([Math.floor(Math.random() * 1000)]),
-              backgroundColor: 'rgba(54, 162, 235, 0.2)',
-              borderColor: 'rgba(54, 162, 235, 1)',
-              borderWidth: 1
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: true
-              }
-            }]
-          }
-        }
+      $("#dataView").on("change", function() {
+        populateSalesDataTable($("#bestsellingProductCard").text());
       });
-
-      // Mock initial data for monthly sales
-      let monthlySalesData = generateRandomSalesData(12);
-      let monthlyPredictionData = generateRandomSalesData(6); // Prediction for next 6 months
-
-      // Product Specific Yearly Sales Chart
-      let productYearlySalesCtx = document.getElementById('productYearlySalesChart').getContext('2d');
-      let productYearlySalesChart = new Chart(productYearlySalesCtx, {
-        type: 'bar',
-        data: {
-          labels: ["1396", "1397", "1398", "1399", "1400", "1401", "1402", "1403"],
-          datasets: [
-            {
-              label: 'Yearly Sales',
-              data: generateRandomSalesData(7).concat([Math.floor(Math.random() * 1000)]),
-              backgroundColor: 'rgba(255, 99, 132, 0.2)',
-              borderColor: 'rgba(255, 99, 132, 1)',
-              borderWidth: 1
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: true
-              }
-            }]
-          }
-        }
-      });
-
-      // Product Specific Monthly Sales Chart
-      let productMonthlySalesCtx = document.getElementById('productMonthlySalesChart').getContext('2d');
-      let productMonthlySalesChart = new Chart(productMonthlySalesCtx, {
-        type: 'line',
-        data: {
-          labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-          datasets: [
-            {
-              label: 'Monthly Sales',
-              data: monthlySalesData,
-              backgroundColor: 'rgba(255, 193, 7, 0.2)',
-              borderColor: 'rgba(255, 193, 7, 1)',
-              borderWidth: 1
-            },
-            {
-              label: 'Monthly Sales Prediction',
-              data: monthlyPredictionData,
-              backgroundColor: 'rgba(255, 0, 0, 0.2)',
-              borderColor: 'rgba(255, 0, 0, 1)',
-              borderWidth: 1
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: true
-              }
-            }]
-          }
-        }
-      });
-    }
-
-function handleProductSelection(product) {
-      $("#bestsellingProductCard").text(product);
-      yearlySalesBarChart.data.datasets[0].data = generateRandomSalesData(7).concat([Math.floor(Math.random() * 1000)]);
-      yearlySalesBarChart.update();
-      populateSalesDataTable(product);
-    }
-
- function populateSalesDataTable(product) {
-      let salesDataBody = $("#salesDataBody");
-      salesDataBody.empty();
-      let productPackages = packaging[product] || ["Package 1", "Package 2"];
-      productPackages.forEach(pkg => {
-        let row = `
-          <tr>
-            <td>${product}</td>
-            <td>${pkg}</td>
-            <td>${Math.floor(Math.random() * 1000)}</td>
-            <td>${Math.floor(Math.random() * 1000)}</td>
-            <td>${Math.floor(Math.random() * 1000)}</td>
-            <td>${Math.floor(Math.random() * 1000)}</td>
-            <td>${Math.floor(Math.random() * 1000)}</td>
-            <td>${Math.floor(Math.random() * 1000)}</td>
-            <td>${Math.floor(Math.random() * 1000)}</td>
-          </tr>
-        `;
-        salesDataBody.append(row);
-      });
-    }
-    function populateSalesDataTable2(product) {
-      let salesDataBody = $("#salesDataBody");
-      salesDataBody.empty();
-      let productPackages = packaging[product] || ["Package 1", "Package 2"];
-      productPackages.forEach(pkg => {
-        let row = `
-          <tr>
-            <td>201109</td>
-            <td>${product}</td>
-            <td>${pkg}</td>
-            <td>وزن</td>
-            <td>کیلوگرم</td>
-            <td>۱۰۰</td>
-
-          </tr>
-        `;
-        salesDataBody.append(row);
-      });
-    }
-
+    });
+    </script>
+</body>
+</html>
